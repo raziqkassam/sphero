@@ -14,6 +14,6 @@ drive_sphero.go
 
 Notes:
 - will need to adjust the connection based on the specific robot used
-for JS, change the MAC ID in the file
-for GO, call the program by the specific friendly name (ex. SK-####)
+  - for JS, change the MAC ID in the file
+  - for GO, call the program by the specific friendly name (ex. SK-####)
 
