@@ -6,6 +6,8 @@ drive_sphero.js
 - The Sphero only moves for 500ms at speed 70
 - connects through node.js ble connector
 - better at registering continuous clicks
+- can use 'b' to toggle the rear light
+  - shows the back of robot, for direction
 
 drive_sphero.go
 - uses arrow keys to control Sphero SPRK+
