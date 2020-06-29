@@ -21,7 +21,10 @@ function arrowKey_control() {
 	var dir_history = []; // array to keep track of past directions and limits
 	var dir_limit = 'none'; // used as a 4-way bool to determine a direction limit
 	var limit_value = 4; // the value of how many times you can travel the same direction
-
+	var time_reg = 400; // ms
+	var time_180 = 700; // ms
+	var sphero_speed = 80; // speed of the sphero, used in roll functions
+	
 	var stdin = process.stdin // look for keystrokes in terminal window
 	stdin.setRawMode( true ); // registers continuous typing (no 'enter' needed)
 	stdin.resume(); // process wil not exit
@@ -46,49 +49,50 @@ function arrowKey_control() {
 		}
 		else if( key === Keys.left && dir_limit != 'left' ) { // if left is clicked and hasn't been pressed 'limit_value' times before
 			if( direction === 'right' ) // if opposite direction, needs more time to rotate and move
-				sprk.setMotionTimeout( 700 );
+				sprk.setMotionTimeout( time_180 );
 			else 
-				sprk.setMotionTimeout( 400 ); // standard time, only rolls for 400ms
-			
-			sprk.roll( 80, 270 ); // roll( speed, heading )
+				sprk.setMotionTimeout( time_reg ); // standard time, only rolls for 400ms
+				
+			sprk.roll( sphero_speed, 270 ); // roll( speed, heading )
 			console.log( '\tDriving Left' ); // print out the direction moved
 			direction = 'left'; // logs the latest direction moved
 			dir_limit = 'none' // reset the direction limit
 		}
 		else if( key === Keys.right && dir_limit != 'right' ) {
 			if( direction === 'left' )
-				sprk.setMotionTimeout( 700 );
+				sprk.setMotionTimeout( time_180 );
 			else 
-				sprk.setMotionTimeout( 400 );
+				sprk.setMotionTimeout( time_reg );
 			
-			sprk.roll( 80, 90 );	
+			sprk.roll( sphero_speed, 90 );	
 			console.log( '\tDriving Right' );	
 			direction = 'right';
 			dir_limit = 'none'	
 		}
 		else if( key === Keys.up && dir_limit != 'up' ) {
 			if( direction === 'down' ) 
-				sprk.setMotionTimeout( 700 )
+				sprk.setMotionTimeout( time_180 )
 			else 
-				sprk.setMotionTimeout( 400 );
+				sprk.setMotionTimeout( time_reg );
 			
-			sprk.roll( 80, 0 );
+			sprk.roll( sphero_speed, 0 );
 			console.log( '\tDriving Forwards' );
 			direction = 'up';
 			dir_limit = 'none'	
 		}
 		else if( key === Keys.down && dir_limit != 'down' ) {
 			if( direction === 'up' )
-				sprk.setMotionTimeout( 700 );
+				sprk.setMotionTimeout( time_180 );
 			else
-				sprk.setMotionTimeout( 400 );
+				sprk.setMotionTimeout( time_reg );
 				
-			sprk.roll( 80, 180 );	
+			sprk.roll( sphero_speed, 180 );	
 			console.log( '\tDriving Backwards' );
 			direction = 'down';
 			dir_limit = 'none'	
 		}
 		
+		sprk.setStabilization( 1 );
 		dir_history[ dir_history.length ] = direction; // update the array with the latest direction
 		
 		if( dir_history.length > limit_value-1 ) { // if there are more values in the array then the desired limit
