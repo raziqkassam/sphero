@@ -8,6 +8,14 @@ drive_sphero.js
 - better at registering continuous clicks
 - can use 'b' to toggle the rear light
   - shows the back of robot, for direction
+ 
+drive_rotate_sphero.js
+- use the left and right arrow keys to rotate the sphero
+- the up arrow is used to go forward
+- the speed and time of roll forward is adjustable
+- the rotation angle per button click is adjustable
+- also allows for rear light toggling with clicking 'b'
+- has a sleep delay between each button click
 
 drive_sphero.go
 - uses arrow keys to control Sphero SPRK+
