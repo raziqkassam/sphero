@@ -17,6 +17,12 @@ drive_rotate_sphero.js
 - also allows for rear light toggling with clicking 'b'
 - has a sleep delay between each button click
 
+SSVEP_flashingLED.ino
+- Arduino code for the flashing of LED's
+- input the desired frequencies, and connect the LED's to the desired pins
+- the accuracy is unknown at this moment
+- uses millis() and time stamping for frequency
+
 drive_sphero.go
 - uses arrow keys to control Sphero SPRK+
 - changes the LED lights based on each direction
