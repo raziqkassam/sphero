@@ -92,7 +92,7 @@ function arrowKey_control() {
 			dir_limit = 'none'	
 		}
 		
-		sprk.setStabilization( 1 );
+		sprk.setStabilization( 1 ); // turn on self stabilization
 		dir_history[ dir_history.length ] = direction; // update the array with the latest direction
 		
 		if( dir_history.length > limit_value-1 ) { // if there are more values in the array then the desired limit
