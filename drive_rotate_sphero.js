@@ -6,7 +6,7 @@ var sphero = require( "sphero" ),
 	sprk = sphero( mac_id ); 
 
 console.log( 'Connecting with Sphero SPRK+ ...' );
-sprk.connect(); // connect the robot (light should turn on)
+sprk.connect(); // connect the robot
 console.log( mac_id, 'is successfully connected\n\nProceeding to start' );
 
 arrowKey_control(); // call the main function
@@ -16,15 +16,18 @@ console.log( '\t\tPress [b] to toggle the rear light for direction' );
 console.log( '\t\tPress [Ctrl+c] at any time to quit the program\n' );
 
 function arrowKey_control() {		
-	var Keys = { left: '\u001b[D', up: '\u001b[A', right: '\u001b[C' }; //Telnet keyboard equivelant for arrows
+	var Keys = { left: '\u001b[D', up: '\u001b[A', right: '\u001b[C' }; // Telnet keyboard equivelant for arrows
 	var toggle = true; // bool value for toggling rear light
+	
 	var direction = 'start'; // values to keep track of latest direction
 	var dir_history = []; // array to keep track of past directions and limits
 	var dir_limit = 'none'; // used as a 4-way bool to determine a direction limit
+
+	var fwd_bool_limit = false; // change to false if you don't want a limit
 	var fwd_counter = 0; // counter for number of forward clicks
 	var fwd_limit = 4; // limit for number of times you can click forward
 	
-	var speed = 90; // speed of sphero when driving forward
+	var speed = 200; // speed of sphero when driving forward
 	var heading = 0; // initialize and default set heading to 0 (forward)
 	
 	var rotation_angle = 45; // set the value of angle change on each side arrow click
@@ -78,13 +81,13 @@ function arrowKey_control() {
 		}
 		else if( key === Keys.up && dir_limit != 'up' ) {
 			
-			sprk.setMotionTimeout( 400 );
-			sprk.roll( speed, heading );
+			sprk.setMotionTimeout( 1300 ); // only move sphero for specific time in ms
+			sprk.roll( speed, heading ); // speed can be changed in line 30
 			
 			console.log( '\tDriving\t Forwards' );
 			direction = 'up';
 			dir_limit = 'none'
-			fwd_counter++;	
+			fwd_counter++; // add one to the counter for possible fwd limit
 		}
 
 		sprk.setStabilization( 1 ); // ensures stabilization is always on
@@ -103,8 +106,8 @@ function arrowKey_control() {
 					dir_limit = last_dir; // limit is set to the direction that was repeated 'limit_value' times
 		}
 		
-		if( fwd_counter >= fwd_limit ) { // limiting the forward direction
-			limit = true;
+		if( fwd_bool_limit && fwd_counter >= fwd_limit ) { // if bool is true, will set a limit (line 25)
+			limit = true; // limiting the forward direction
 			dir_limit = 'up'
 		}
 		var sleep_time = 500 // ms
@@ -121,12 +124,4 @@ function sleep( milliseconds ) {
   } while (currentDate - date < milliseconds);
   
 }
-
-
-
-
-
-
-
-
 
