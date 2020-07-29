@@ -1,20 +1,20 @@
 # Controlling the Sphero SPRK+
 
-sphero_dir_receiver.js
-- a JS file that runs a python file name that you input
-- it then takes whatever is printed from that python file
-- you are able to do whatever with that printed and parsed number
-- this file runs sphero_dir_thrower.py
-- recieves either a 1 or 2 or 3 and moves the sphero based on the number
-- stores each of the given directions in an array
-- does not work if root is used to call it
-- need to make sure that you give permission for BLE to be accessed without root
+stream_EEG_data.py
+- file that streams EEG data from https://github.com/sylvchev/dataset-ssvep-exoskeleton
+- simulates SSVEP paradigm, allows for offline streamig data analysis
+- various pipelines and subject data is all available
+- delay and run time are all adjustable
+- finds predicted values in the range of 1-4
+- pushes the value into an empty text file
+- Main Author: Eli Kinney-Lang (@ekinney-lang)
 
-sphero_dir_thrower.py
-- compiles and runs through the running of sphero_dir_receiver.js
-- the program should only print numbers, with other specifications
-- this file generates a random number from 1 to 100
-- prints a 1 or 2 or 3 based on the probability specified for the directions desired
+sphero_dir_receiver.js
+- a JS file that runs a python file name that you input (ex. stream_EEG_data.py)
+- the python file pushes values to a text file
+- this file reads the values (one number per line)
+- controlls the sphero based on the number found in the file
+- rotates both directions or drives forward (with one resting state)
 
 SSVEP_flashingLED3.ino
 - Arduino code for the flashing of 3 sets of LED's
