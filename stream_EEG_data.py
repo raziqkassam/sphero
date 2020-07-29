@@ -1,14 +1,14 @@
 
 # Author: Eli Kinney-Lang
-# Modified by James Chen and Raziq Kassam
+# Modified Raziq Kassam
 
 """
-Created on Wed Jun 17 16:02:49 2020
+
 This script set will stream in SSVEP data from the publicly available dataset
 on using SSVEP to control an exoskeleton.
 This is a master script laying out each step needed. This will be converted
 into individual functions from python, so that end-users can easily call them.
-@author: Eli
+
 """
 
 # Default imports
@@ -926,16 +926,16 @@ class ReadEEG:
                 self.__stream_class_output(output_pred, outlet, stream_name, stream_type)
                 print("Predicted Value: " + str(pred))
 
-                direction_file = open("directions.txt", "a+")
+                direction_file = open("directions.txt", "a+") # open file in append mode (add on each time)
                 if count == 0 :
-                    direction_file.write( str(pred) ) 
+                    direction_file.write( str(pred) ) # add value (number) to top
                 else :
-                    direction_file.write( "\n" + str(pred) )
+                    direction_file.write( "\n" + str(pred) ) # add numbers after on new line
                     
-                direction_file.close()
-                count = count + 1
-                print( "Hello", flush=True, end='' )
-                time.sleep(return_speed)
+                direction_file.close() # close the file
+                count = count + 1 # increment the count, for new line writing
+                print( "Predicted Value sent to text file", flush=True, end='' ) # used settings for better js running
+                time.sleep(return_speed) # wait certain amount of time before repeating
 
             # Delete the outlet
             # print('...Deleting the outlet...')
@@ -950,12 +950,13 @@ class ReadEEG:
 
 
 if __name__ == '__main__':
-    direction_file = open("directions.txt", "w+")
-    print( "*******************************Opened directions.txt file\n")
-    direction_file.close()
-    print( "*******************************Closed directions.txt file [should be empty]\n")
     
-    test = ReadEEG()
+    direction_file = open("directions.txt", "w+") # open in write mode to override file and clear it
+    print( "Opened directions.txt file\n")
+    direction_file.close() # close file, should have an empty file remaining
+    print( "Closed directions.txt file\n")
+    
+    test = ReadEEG() # call the stream function, with various parameters below
     test.simulate_SSVEP_pipeline(train_subj=5, test_subj=5,
                                  simulate_online=True,
                                  trn_trial=0, tst_trial=1,
