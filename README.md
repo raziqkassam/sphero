@@ -5,7 +5,7 @@ BME Abstract
 - background of the specific BCI process
 - methods and results
 
-## stream_EEG_data.py
+### stream_EEG_data.py
 - file that streams EEG data from https://github.com/sylvchev/dataset-ssvep-exoskeleton
 - simulates SSVEP paradigm, allows for offline streamig data analysis
 - various pipelines and subject data is all available
@@ -21,14 +21,14 @@ BME Abstract
 - controlls the sphero based on the number found in the file
 - rotates both directions or drives forward (with one resting state)
 
-SSVEP_flashingLED3.ino
+### SSVEP_flashingLED3.ino
 - Arduino code for the flashing of 3 sets of LED's
 - input the desired frequencies, and connect the LED's to the desired pins
 - ensure the frequencies are not multiples of each other, such as prime numbers
 - the accuracy is unknown at this moment
 - uses millis() and time stamping for frequency
 
-drive_rotate_sphero.js
+### drive_rotate_sphero.js
 - use the left and right arrow keys to rotate the sphero
 - the up arrow is used to go forward
 - the speed and time of roll forward is adjustable
