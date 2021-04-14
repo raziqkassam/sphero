@@ -1,6 +1,6 @@
 # Controlling the Sphero SPRK+
 
-BME Abstract
+### BME Abstract
 - showcases the project goal
 - background of the specific BCI process
 - methods and results
