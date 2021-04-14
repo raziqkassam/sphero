@@ -5,7 +5,7 @@ BME Abstract
 - background of the specific BCI process
 - methods and results
 
-stream_EEG_data.py
+# stream_EEG_data.py
 - file that streams EEG data from https://github.com/sylvchev/dataset-ssvep-exoskeleton
 - simulates SSVEP paradigm, allows for offline streamig data analysis
 - various pipelines and subject data is all available
