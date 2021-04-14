@@ -5,7 +5,7 @@ BME Abstract
 - background of the specific BCI process
 - methods and results
 
-# stream_EEG_data.py
+## stream_EEG_data.py
 - file that streams EEG data from https://github.com/sylvchev/dataset-ssvep-exoskeleton
 - simulates SSVEP paradigm, allows for offline streamig data analysis
 - various pipelines and subject data is all available
@@ -14,7 +14,7 @@ BME Abstract
 - pushes the value into an empty text file
 - Main Author: Eli Kinney-Lang (@ekinney-lang)
 
-sphero_dir_receiver.js
+### sphero_dir_receiver.js
 - a JS file that runs a python file name that you input (ex. stream_EEG_data.py)
 - the python file pushes values to a text file
 - this file reads the values (one number per line)
